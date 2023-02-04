@@ -1,0 +1,12 @@
+{
+  "name": "express-project",
+  "version": "1.0.0",
+  "description": "express project",
+  "main": "index.js",
+  "repository": "https://github.com/AbdulQuayyum/express-project.git",
+  "author": "Abdul-Quayyum",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
