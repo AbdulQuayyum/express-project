@@ -4,7 +4,7 @@
   "description": "express project",
   "main": "index.js",
   "scripts": {
-    "start": ""
+    "start": "node Server.js"
   },
   "repository": "https://github.com/AbdulQuayyum/express-project.git",
   "author": "Abdul-Quayyum",
