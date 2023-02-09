@@ -22,8 +22,28 @@ const Contacts = [
 ]
 
 app.use((req, res, next) => {
-    console.log(`${req.method} ${req.url}`)
+    const Start = Date.now()
     next()
+    const Delta = Date.now() - Start
+    console.log(`${req.method} ${req.url} ${Delta}ms`)
+})
+
+app.use(express.json())
+
+app.post("/Contacts", (req, res) => {
+    if (!req.body.name) {
+      return res.status(400).json({
+            error: 'Empty contact name'
+        })
+    }
+
+    const newContact = {
+        name: req.body.name,
+        id: Contacts.length,
+    }
+    Contacts.push(newContact)
+
+    res.json(newContact)
 })
 
 app.get('/Contacts', (req, res) => res.json(Contacts))
