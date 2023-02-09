@@ -1,25 +1,10 @@
 const express = require('express')
+
+const ContactsController = require("./Controllers/Contacts.Controller")
+const MessagesController = require("./Controllers/Messages.Controller")
+
 const app = express()
 const port = 3000
-
-const Contacts = [
-    {
-        id: 0,
-        name: "Ayinla Akerekoro"
-    },
-    {
-        id: 1,
-        name: "Ajadi Jagidijagan"
-    },
-    {
-        id: 2,
-        name: "Ajani Ajanlekoko"
-    },
-    {
-        id: 3,
-        name: "Alamu Aresejabata"
-    }
-]
 
 app.use((req, res, next) => {
     const Start = Date.now()
@@ -30,38 +15,14 @@ app.use((req, res, next) => {
 
 app.use(express.json())
 
-app.post("/Contacts", (req, res) => {
-    if (!req.body.name) {
-      return res.status(400).json({
-            error: 'Empty contact name'
-        })
-    }
+app.post("/Contacts", ContactsController.PostContact)
 
-    const newContact = {
-        name: req.body.name,
-        id: Contacts.length,
-    }
-    Contacts.push(newContact)
+app.get('/Contacts', ContactsController.GetContacts)
 
-    res.json(newContact)
-})
+app.get('/Contacts/:ContactID', ContactsController.GetContact)
 
-app.get('/Contacts', (req, res) => res.json(Contacts))
+app.get("/Messages", MessagesController.GetMessages)
 
-app.get('/Contacts/:ContactID', (req, res) => {
-    const ContactID = Number(req.params.ContactID)
-    const Contact = Contacts[ContactID]
-    if (Contact) {
-        res.status(200).json(Contact)
-    } else {
-        res.status(404).json({
-            error: 'Contact not found'
-        })
-    }
-})
-
-app.get("/Messages", (req, res) => res.send("<ul><li>Hello Abdul-Quayyum</li></ul>"))
-
-app.post('/Messages', (req, res) => console.log("Updating messages...."))
+app.post('/Messages', MessagesController.PostMessages)
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
