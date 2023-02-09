@@ -4,12 +4,14 @@
   "description": "express project",
   "main": "index.js",
   "scripts": {
+    "devStart": "nodemon Server.js",
     "start": "node Server.js"
   },
   "repository": "https://github.com/AbdulQuayyum/express-project.git",
   "author": "Abdul-Quayyum",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20"
   }
 }
