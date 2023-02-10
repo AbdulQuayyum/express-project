@@ -1,4 +1,5 @@
 const express = require('express')
+const path = require('path')
 
 const ContactsRouter = require('./Routes/Contacts.Router')
 const MessagesRouter = require('./Routes/Messages.Router')
@@ -13,6 +14,7 @@ app.use((req, res, next) => {
     console.log(`${req.method} ${req.baseUrl}${req.url} ${Delta}ms`)
 })
 
+app.use('/Site', express.static(path.join (__dirname, 'Public')))
 app.use(express.json())
 
 app.use('/Contacts', ContactsRouter)
