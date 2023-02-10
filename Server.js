@@ -15,11 +15,15 @@ app.use((req, res, next) => {
 
 app.use(express.json())
 
-app.post("/Contacts", ContactsController.PostContact)
+const ContactsRouter = express.Router()
 
-app.get('/Contacts', ContactsController.GetContacts)
+ContactsRouter.post("/", ContactsController.PostContact)
 
-app.get('/Contacts/:ContactID', ContactsController.GetContact)
+ContactsRouter.get('/', ContactsController.GetContacts)
+
+ContactsRouter.get('/:ContactID', ContactsController.GetContact)
+
+app.use('/Contacts', ContactsRouter)
 
 app.get("/Messages", MessagesController.GetMessages)
 
