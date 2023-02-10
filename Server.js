@@ -10,7 +10,7 @@ app.use((req, res, next) => {
     const Start = Date.now()
     next()
     const Delta = Date.now() - Start
-    console.log(`${req.method} ${req.url} ${Delta}ms`)
+    console.log(`${req.method} ${req.baseUrl}${req.url} ${Delta}ms`)
 })
 
 app.use(express.json())
