@@ -1,7 +1,11 @@
 const path = require('path')
 
 function GetMessages(req, res) {
-    res.sendFile(path.join(__dirname, '..', 'Public', 'Images', 'cat.jpeg'))
+    res.render('Messages', {
+        Title: 'Message to my contacts!',
+        Contact: 'Ajani Ajanlekoko'
+    })
+    // res.sendFile(path.join(__dirname, '..', 'Public', 'Images', 'cat.jpeg'))
     // res.send("<ul><li>Hello Abdul-Quayyum</li></ul>")
 }
 
