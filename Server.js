@@ -1,7 +1,7 @@
 const express = require('express')
 
-const ContactsController = require("./Controllers/Contacts.Controller")
-const MessagesController = require("./Controllers/Messages.Controller")
+const ContactsRouter = require('./Routes/Contacts.Router')
+const MessagesRouter = require('./Routes/Messages.Router')
 
 const app = express()
 const port = 3000
@@ -15,18 +15,7 @@ app.use((req, res, next) => {
 
 app.use(express.json())
 
-const ContactsRouter = express.Router()
-
-ContactsRouter.post("/", ContactsController.PostContact)
-
-ContactsRouter.get('/', ContactsController.GetContacts)
-
-ContactsRouter.get('/:ContactID', ContactsController.GetContact)
-
 app.use('/Contacts', ContactsRouter)
-
-app.get("/Messages", MessagesController.GetMessages)
-
-app.post('/Messages', MessagesController.PostMessages)
+app.use('/Messages', MessagesRouter)
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
